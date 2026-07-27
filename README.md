@@ -1,7 +1,7 @@
 # Module 5 — Agentic AI
 ## Hands-On Lab Package
 
-**Days 12–16 | Advanced | 5 exercises, ~15–20 min each**
+**Days 12–16 | Advanced | 5 core exercises + 1 capstone, ~15–30 min each**
 
 This module builds agentic systems from the ground up: a single tool-using agent, a multi-agent supervisor-worker system, a human-in-the-loop approval gate, an observable/debuggable agent, and an agent hardened against indirect prompt injection.
 
@@ -15,13 +15,15 @@ module5_labs/
 │   ├── product_knowledge_base.csv     (Exercises 1, 4)
 │   ├── loan_applications.csv          (Exercise 2)
 │   ├── transfer_requests.csv          (Exercise 3)
-│   └── external_documents.csv         (Exercise 5)
+│   ├── external_documents.csv         (Exercise 5)
+│   └── capstone_applications.csv      (Exercise 6 — capstone)
 └── exercises/
     ├── 01_ReAct_Agent_Tools.md              + 01_react_agent_tools.py
     ├── 02_Supervisor_Worker.md              + 02_supervisor_worker.py
     ├── 03_Human_In_The_Loop.md              + 03_human_in_the_loop.py
     ├── 04_Observability_Debugging.md        + 04_observability_debugging.py
-    └── 05_Guardrails_Injection_Defence.md   + 05_guardrails_injection_defence.py
+    ├── 05_Guardrails_Injection_Defence.md   + 05_guardrails_injection_defence.py
+    └── 06_Capstone_Loan_Agent.md            + 06_capstone_loan_agent.py
 ```
 
 | # | Exercise | Theory Topic | Needs |
@@ -31,6 +33,7 @@ module5_labs/
 | 3 | Human-in-the-Loop Approval Gate | 5.7 Human-in-the-Loop Workflows and Approval Gates | Nothing — pure local logic, run interactively |
 | 4 | Agent Observability and Debugging | 5.8 Agent Observability, Tracing, Debugging | 1 Azure deployment (Stage 2 only — Stage 1 runs offline) |
 | 5 | Agent Guardrails and Injection Defence | 5.9 Agent Risks / 5.10 Reliability Patterns | 1 Azure deployment |
+| 6 | **CAPSTONE:** End-to-End Loan Processing Agent | All of 5.2–5.10 combined | 1 Azure deployment, partially interactive |
 
 **A note on frameworks:** the theory session names **LangGraph** (agent orchestration) and **LangSmith** (observability) as the production tools for this domain. Every exercise here builds the underlying mechanism by hand instead — a plain `while` loop calling Azure OpenAI's native tool-calling API, and a simple in-memory trace logger — using the exact same philosophy as earlier modules (hand-built vector store instead of ChromaDB in Module 4, hand-built RRF instead of Azure AI Search's hybrid mode, etc.). The goal is that when you DO pick up LangGraph or LangSmith later, they read as "a framework automating something I already understand," not a black box.
 
@@ -103,6 +106,7 @@ python exercises/02_supervisor_worker.py
 python exercises/03_human_in_the_loop.py
 python exercises/04_observability_debugging.py
 python exercises/05_guardrails_injection_defence.py
+python exercises/06_capstone_loan_agent.py
 ```
 
 **Exercise 3 is interactive** — it will pause and prompt you to type `a` (approve), `r` (reject), or `m` (modify) for each transfer above the approval threshold. Run it in a real terminal, not a notebook cell that can't accept input.
@@ -142,5 +146,6 @@ Every script reads its data from `data/` — nothing is hardcoded in the Python 
 | 45–60 min | Exercise 3 — Human-in-the-Loop Approval Gate (interactive) |
 | 60–80 min | Exercise 4 — Observability and Debugging |
 | 80–100 min | Exercise 5 — Guardrails and Injection Defence |
+| 100–130 min | Exercise 6 — CAPSTONE: End-to-End Loan Processing Agent (partially interactive) |
 
-Instructors: the original curriculum notes "Select 2 options. Advanced teams may attempt 3 if time allows" for this module — with 5 exercises now built out, consider running Exercises 1 and 3 as the core pair for most cohorts (they're the most foundational and the most demonstrable live), and treating 2, 4, and 5 as extension material for advanced groups or take-home work.
+Instructors: the original curriculum notes "Select 2 options. Advanced teams may attempt 3 if time allows" for this module — with 5 core exercises plus a capstone now built out, consider running Exercises 1 and 3 as the core pair for most cohorts (they're the most foundational and the most demonstrable live), treating 2, 4, and 5 as extension material for advanced groups, and reserving the Exercise 6 capstone specifically for advanced cohorts who've completed all five — it assumes familiarity with every prior exercise's pattern and is the best single exercise to run if you only have time for ONE demonstration of "what a real agentic system looks like end-to-end."
